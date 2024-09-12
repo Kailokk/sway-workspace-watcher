@@ -1,5 +1,5 @@
 [toolchain]
 channel = "stable"
-components = [ "rustfmt", "rustc-dev" ]
+components = [ "rustfmt", "rustc-dev", "rust-src" ]
 targets = [  ]
 profile = "default"
