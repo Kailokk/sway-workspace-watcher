@@ -60,10 +60,10 @@ environment.systemPackages = [ inputs.sway-workspace-watcher.packages.${pkgs.sys
 
 ### Crates/Cargo
 
-You can install this package directly from crates.io using cargo:
+You can build/install this package directly using cargo:
 
 ```sh
-cargo install sway-workspace-watcher
+cargo install --git "https://github.com/Kailokk/sway-workspace-watcher"
 ```
 
 ## Contributions
