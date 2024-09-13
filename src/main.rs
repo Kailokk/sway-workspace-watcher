@@ -47,7 +47,7 @@ fn main() {
             })
             .collect();
         println!(
-            "{{{}}}",
+            "{{\"workspaces\":{}}}",
             serde_json::to_string(&workspaces).expect("Failed to serialize workspaces")
         );
     });
