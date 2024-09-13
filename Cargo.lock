@@ -71,7 +71,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "sway-eww-workspace-watcher"
+name = "sway-workspace-watcher"
 version = "0.1.0"
 dependencies = [
  "serde",
