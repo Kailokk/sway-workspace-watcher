@@ -71,6 +71,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "sway-eww-workspace-watcher"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "swayipc",
+]
+
+[[package]]
 name = "swayipc"
 version = "3.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -90,15 +99,6 @@ dependencies = [
  "serde",
  "serde_json",
  "thiserror",
-]
-
-[[package]]
-name = "swaywatchers"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "swayipc",
 ]
 
 [[package]]
