@@ -27,14 +27,14 @@ fn write_workspaces(connection:&mut Connection){
                 urgent: workspace.urgent,
             })
             .fold(Vec::new(), |mut accumulator,workspace|{
-                for something in 0..1{
-                    let stored_workspace = match accumulator.get(something){
+                for index in 0..accumulator.len(){
+                    let stored_workspace = match accumulator.get(index){
                         Some(value) => value,
-                        None => continue,
+                        None => break,
                     };
 
-                    if stored_workspace.id < something {
-                        accumulator.insert(something +1, workspace);
+                    if stored_workspace.id > workspace.id {
+                        accumulator.insert(index, workspace);
                         return accumulator; 
                     }
                 }
