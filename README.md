@@ -66,6 +66,20 @@ You can build/install this package directly using cargo:
 cargo install --git "https://github.com/Kailokk/sway-workspace-watcher"
 ```
 
+## Useage
+
+Once install simply run
+
+```sh
+sway-workspace-watcher
+```
+
+And the program will output the current workspace configuration, every time a state is changed.
+The output will order the list with the following hierarchy:
+
+- Workspace name (if parseable to a number)
+- Underlying sway workspace id
+
 ## Contributions
 
 This is intended as a very small app to help me bridge the gap between sway and eww, to display the workspace state.
