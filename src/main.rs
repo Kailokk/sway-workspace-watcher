@@ -5,6 +5,7 @@ use swayipc::{Connection, EventType};
 
 #[derive(Serialize)]
 struct Workspace {
+    pub id: usize,
     name: Box<str>,
     output: Box<str>,
     visible: bool,
@@ -13,18 +14,33 @@ struct Workspace {
 }
 
 fn write_workspaces(connection:&mut Connection){
-    let workspaces: Box<[Workspace]> = connection
+    let workspaces: Vec<Workspace> = connection
             .get_workspaces()
             .expect("Failed to retrieve workspaces")
             .iter()
             .map(|workspace| Workspace {
+                id : workspace.name.parse::<usize>().unwrap_or(usize::try_from(workspace.id).unwrap_or_else(|_|{panic!("Failed to parse workspace id from value: {}", workspace.id)})),
                 name: Box::from(workspace.name.as_ref()),
                 output: Box::from(workspace.output.as_ref()),
                 visible: workspace.visible,
                 focused: workspace.focused,
                 urgent: workspace.urgent,
             })
-            .collect();
+            .fold(Vec::new(), |mut accumulator,workspace|{
+                for something in 0..1{
+                    let stored_workspace = match accumulator.get(something){
+                        Some(value) => value,
+                        None => continue,
+                    };
+
+                    if stored_workspace.id < something {
+                        accumulator.insert(something +1, workspace);
+                        return accumulator; 
+                    }
+                }
+                accumulator.push(workspace);
+                return accumulator;
+            });
         println!(
             "{{\"workspaces\":{}}}",
             serde_json::to_string(&workspaces).expect("Failed to serialize workspaces")
